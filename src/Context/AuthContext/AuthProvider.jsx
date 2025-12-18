@@ -1,94 +1,101 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from 'react';
 import { AuthContext } from "./AuthContext";
-import { 
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  updateProfile,
-  GoogleAuthProvider,
-  signInWithPopup
-} from "firebase/auth";
-import { auth } from "../../Firebase/firebase.init";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { auth } from '../../firebase/firebase.init';
+import { updateProfile } from "firebase/auth";
+import axios from 'axios';
+
+const updateUserProfile = (name, photoURL) => {
+  if(auth.currentUser) {
+    return updateProfile(auth.currentUser, { displayName: name, photoURL: photoURL });
+  }
+  return Promise.reject("No user logged in");
+}
+
 
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+const AuthProvider = ({children}) => {
 
-  const createUser = async (email, password, name, photoURL) => {
-    setLoading(true);
-    const result = await createUserWithEmailAndPassword(auth, email, password);
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true);
+    const [role, setRole] = useState("");
 
-    if (name || photoURL) {
-      await updateProfile(result.user, {
-        displayName: name,
-        photoURL: photoURL,
-      });
+    const createUser = (email,password) =>{
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    return { user: result.user };
+    const signInuser = (email,password) =>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth,email,password)
+    }
 
-  };
+    const signInWithGoogle = () =>{
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
 
-  const signInUser = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
 
-  const signInWithGoogle = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
+    const signOutUser = () =>{
+        setLoading(true);
+        return signOut(auth);
+    }
 
-  const logout = () => {
-    setLoading(true);
-    return signOut(auth);
-  };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
 
-      console.log("🔄 Current logged user:", currentUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          email: user.email,
-          displayName: user.displayName,
-          uid: user.uid,
-          photoURL: user.photoURL || null,
+    useEffect(()=>{
+        if(!user) return;
+             axios.get(`http://localhost:5000/users/role/${user.email}`)
+        .then(res=>{
+            console.log(res.data.role)
+            setLoading(false)
         })
-      );
-    } else {
-      localStorage.removeItem("user");
+    },[user])
+
+
+useEffect(() =>{
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
+        console.log("current user in auth state change", currentUser)
+        setUser(currentUser)
+        setLoading(false);
+
+
+        
+
+    })
+
+
+    return () =>{
+        unsubscribe();
     }
-  }, [user]);
+}, [])
 
-  const authInfo = {
-    user,
-    loading,
-    createUser,
-    signInUser,
-    signInWithGoogle,
-    logout,
-    setUser,
-  };
 
-  return (
+
+
+
+
+    const authInfo = {
+        user,
+        loading,
+        createUser,
+        signInuser,
+        signInWithGoogle,
+        signOutUser,
+        updateUserProfile,
+
+        
+    }
+
+
+
+    return (
     <AuthContext.Provider value={authInfo}>
-      {children}
+        {children}
     </AuthContext.Provider>
-  );
+);
+
 };
 
 export default AuthProvider;

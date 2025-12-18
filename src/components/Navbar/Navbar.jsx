@@ -4,12 +4,12 @@ import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const { user, logout } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
   const handlesignout = () => {
-    logout();
+    signOutUser();
     setDropdown(false);
   };
 
