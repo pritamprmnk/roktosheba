@@ -12,7 +12,6 @@ const ErrorPage = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
 
 
-      {/* Image */}
       <img 
         src="/assets/error-404.png"
         alt="App Not Found" 

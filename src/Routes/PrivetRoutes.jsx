@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext/AuthContext';
 import { Navigate } from 'react-router-dom';
+import Loader from '../components/Loader/Loader';
 
 const PrivetRoutes = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading, roleLoading, userStatus } = useContext(AuthContext);
 
-    if (loading) {
-        return <p>Loading...</p>;
+    if (loading || roleLoading) {
+        return <Loader></Loader>;
     }
 
-    if (user) {
+    if (user || userStatus=="blocked") {
         return children;
     }
 

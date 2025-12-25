@@ -7,7 +7,6 @@ export default function Footer() {
     <footer className="from-gray-50 to-white text-gray-800 py-12 mt-10 ">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
 
-        {/* Logo + About */}
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
             <img 
@@ -24,7 +23,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Quick Links */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2">
@@ -34,7 +32,7 @@ export default function Footer() {
             <li><a href="#" className="hover:text-red-600">Donate Blood</a></li>
           </ul>
         </div>
-        {/* Support */}
+
         <div>
           <h3 className="text-lg font-semibold mb-3">Support</h3>
           <ul className="space-y-2">
@@ -45,7 +43,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact Info */}
+
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact</h3>
 
@@ -72,7 +70,6 @@ export default function Footer() {
 
       </div>
 
-      {/* Bottom Section */}
       <div className="mt-10 border-t pt-5 text-center md:flex md:justify-between md:text-left max-w-7xl mx-auto px-6 text-gray-600">
         <p>© 2025 RoktoSheba. All rights reserved.</p>
 

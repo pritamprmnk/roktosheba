@@ -3,7 +3,7 @@ import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
-  const { signInUser, signInWithGoogle } = useContext(AuthContext);
+  const { signInUser, } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -22,11 +22,6 @@ export default function Login() {
       });
   };
 
-  const handleGoogleLogin = () => {
-    signInWithGoogle()
-      .then(() => navigate("/"))
-      .catch(() => setError("Google login failed!"));
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -59,7 +54,6 @@ export default function Login() {
             required
           />
 
-            {/* Forgot Password Link */}
                 <Link
                     className="text-sm text-teal-600 mb-4 mt-2 inline-block"
                     to="/forgot"
@@ -80,18 +74,6 @@ export default function Login() {
           <span className="px-2 text-gray-500 text-sm">Or continue with</span>
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
-
-        <button
-          onClick={handleGoogleLogin}
-          className="w-full border py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 text-black"
-        >
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            className="w-5"
-            alt="Google"
-          />
-          Login with Google
-        </button>
 
         <p className="text-center text-sm text-gray-500 mt-4">
           Don't have an account?{" "}

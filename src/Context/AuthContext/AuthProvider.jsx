@@ -19,14 +19,16 @@ const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true);
+    const [roleLoading, setRoleLoading] = useState(true);
     const [role, setRole] = useState("");
+    const [userStatus, setUserStatus] = useState("")
 
     const createUser = (email,password) =>{
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const signInuser = (email,password) =>{
+    const signInUser = (email,password) =>{
         setLoading(true);
         return signInWithEmailAndPassword(auth,email,password)
     }
@@ -46,10 +48,11 @@ const AuthProvider = ({children}) => {
 
     useEffect(()=>{
         if(!user) return;
-             axios.get(`http://localhost:5000/users/role/${user.email}`)
+             axios.get(`https://rokto-sheba-server-mauve.vercel.app/users/role/${user.email}`)
         .then(res=>{
-            console.log(res.data.role)
-            setLoading(false)
+            setRole(res.data.role)
+            setUserStatus(res.data.status)
+            setRoleLoading(false)
         })
     },[user])
 
@@ -80,10 +83,14 @@ useEffect(() =>{
         user,
         loading,
         createUser,
-        signInuser,
+        signInUser,
         signInWithGoogle,
         signOutUser,
         updateUserProfile,
+        role,
+        roleLoading,
+        userStatus,
+        
 
         
     }

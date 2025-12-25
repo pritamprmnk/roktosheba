@@ -5,7 +5,6 @@ const Forgot = () => {
             <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
         
-        {/* Lock Icon */}
         <div className="flex justify-center mb-6">
           <div className="w-14 h-14 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full">
             <svg
@@ -25,7 +24,6 @@ const Forgot = () => {
           </div>
         </div>
 
-        {/* Heading */}
         <h2 className="text-2xl font-bold text-center mb-2 text-gray-800 ">
           Forgot Your Password?
         </h2>
@@ -35,7 +33,6 @@ const Forgot = () => {
           your password.
         </p>
 
-        {/* Form */}
         <form  className="space-y-4">
           <div>
             <label className="text-gray-700 font-medium">Email Address</label>
@@ -57,7 +54,6 @@ const Forgot = () => {
           </button>
         </form>
 
-        {/* Back to login */}
         <div className="text-center mt-6">
           <Link
             to="/login"

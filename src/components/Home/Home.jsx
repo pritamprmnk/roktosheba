@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
 import Loader from "../Loader/Loader";
+import HeroSection from '../HeroSection/HeroSection';
+import ContactSection from '../ContactSection/ContactSection';
+import StatusSection from '../StatusSection/StatusSection';
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-
         const timer = setTimeout(() => {
             setLoading(false);
         }, 800);
@@ -24,7 +25,9 @@ const Home = () => {
 
     return (
         <div>
-
+            <HeroSection />
+            <StatusSection></StatusSection>
+            <ContactSection></ContactSection>
         </div>
     );
 };

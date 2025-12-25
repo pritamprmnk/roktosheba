@@ -1,16 +1,37 @@
-# React + Vite
+Project Name: RoktoSheba - Blood Donation Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project Overview : RoktoSheba is a user-friendly Blood Donation Application built with the MERN stack     (MongoDB, Express.js, React, Node.js). This platform connects blood donors with recipients, making blood donation seamless and efficient. The application includes features like donor registration, donation request management, admin management, volunteer management, and role-based access control.
 
-Currently, two official plugins are available:
+Live Demo : https://roktosheba11.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+Features :
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Public Features
+- User Registration & Login
+- Search for donors by blood group, district, and upazila
+- View pending blood donation requests
 
-## Expanding the ESLint configuration
+Donor Dashboard
+- View recent donation requests
+- Create new donation requests
+- Edit, delete, and view donation requests
+- Update donation status (done/canceled)
+- Profile management (update name, avatar, district, upazila, blood group)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Admin Dashboard
+- View statistics (total users, total donations, total donation requests)
+- Manage users: block/unblock, make volunteer/admin
+- Manage all donation requests
+- Pagination & filtering for donation requests and users
+
+Volunteer Dashboard
+- View all donation requests
+- Update donation status only
+- Restricted access compared to admin
+
+Additional Features
+- JWT protected private APIs
+- Stripe payment integration for donations/funding
+- Pagination & filtering in tables
+- Fully responsive design for mobile, tablet, and desktop

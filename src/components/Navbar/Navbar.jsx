@@ -20,7 +20,6 @@ export default function Navbar() {
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img
             src="/assets/blood.png"
@@ -32,7 +31,6 @@ export default function Navbar() {
           </h1>
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
           <NavLink to="/" className={navLinkClass}>
             Home
@@ -46,21 +44,21 @@ export default function Navbar() {
               </NavLink>
             </>
           )}
+            {/* <NavLink to="/allrequests" className={navLinkClass}>
+            All Request
+          </NavLink> */}
+            <NavLink to="/donate" className={navLinkClass}>
+            Donate
+          </NavLink>
         </div>
 
-        {/* Right Section */}
         <div className="hidden md:flex items-center gap-4 relative">
           {!user ? (
             <>
-              <Link to="/login" className="font-medium text-gray-700">
+              <Link to="/login" className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
                 Login
               </Link>
-              <Link
-                to="/signup"
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
-              >
-                Register
-              </Link>
+
             </>
           ) : (
             <div className="relative">
@@ -78,7 +76,7 @@ export default function Navbar() {
               {dropdown && (
                 <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg">
                   <Link
-                    to="/profile"
+                    to="/dashboard/profile"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     My Profile
@@ -95,7 +93,6 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden"
@@ -104,7 +101,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden px-6 pb-4 space-y-2">
           <NavLink to="/" className={navLinkClass}>
@@ -113,12 +109,13 @@ export default function Navbar() {
 
           {user && (
             <>
-              <NavLink to="/alltickets" className={navLinkClass}>
-                All Tickets
-              </NavLink>
+              
               <NavLink to="/dashboard" className={navLinkClass}>
                 Dashboard
               </NavLink>
+              <NavLink to="/donate" className={navLinkClass}>
+            Donate
+          </NavLink>
             </>
           )}
 
@@ -127,9 +124,7 @@ export default function Navbar() {
               <Link to="/login" className={navLinkClass}>
                 Login
               </Link>
-              <Link to="/signup" className={navLinkClass}>
-                Register
-              </Link>
+
             </>
           ) : (
             <>

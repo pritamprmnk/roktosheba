@@ -15,6 +15,20 @@ import { useContext } from "react";
 
 import ErrorPage from "./Page/ErrorPage.jsx";
 import Forgot from "./components/Forgot/Forgot.jsx";
+import DashboardLayout from "./components/DashboardLayout/DashboardLayout.jsx";
+import MainDashboard from "./Page/Dashboard/MainDashboard/MainDashboard.jsx";
+import AddRequest from "./Page/Dashboard/AddRequest/AddRequest.jsx";
+import AllUsers from "./Page/Dashboard/AllUsers/AllUsers.jsx";
+import PrivetRoutes from "./Routes/PrivetRoutes.jsx";
+import MyRequests from "./Page/Dashboard/MyRequests/MyRequests.jsx";
+import AllRequests from "./Page/Dashboard/AllRequests/AllRequests.jsx";
+import Profile from "./Page/Dashboard/Profile/Profile.jsx";
+
+import Donate from "./Page/Donate/Donate.jsx";
+import PaymentSuccess from "./Page/PaymentSuccess/PaymentSuccess.jsx";
+import PaymentCancel from "./Page/PaymentCancel/PaymentCancel.jsx";
+import SearchRequest from "./Page/SearchRequest/SearchRequest.jsx";
+
 
 function MyPostsWrapper() {
   const { user } = useContext(AuthContext);
@@ -23,29 +37,77 @@ function MyPostsWrapper() {
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    Component: Root,
+  path: "/",
+  Component: Root,
+  children: [
+    { index: true, Component: Home },
+
+    { path: "login", 
+      Component: Login 
+    },
+
+    { path: "signup", 
+      Component: Signup 
+    },
+
+    { path: "forgot", 
+      Component: Forgot 
+    },
+
+    { path: "donate", 
+      Component: Donate 
+    },
+    { path: "searchrequest", 
+      Component: SearchRequest 
+    },
+
+    { path: "payment-success", 
+      Component: PaymentSuccess 
+    },
+    
+    { 
+      path: "payment-cancel", 
+      Component: PaymentCancel 
+    },
+  ],
+},
+
+  {
+    path: "/dashboard",
+    element: <PrivetRoutes><DashboardLayout /></PrivetRoutes>,
     children: [
-      { index: true, Component: Home },
-      { path: "login", Component: Login },
-      { path: "signup", Component: Signup },
-      {path: "forgot", Component: Forgot }
-
-
-
-
-
-
-
-
+      {
+        index: true,
+        Component: MainDashboard,
+      },
+      {
+        path:"/dashboard/profile",
+        element: <PrivetRoutes><Profile></Profile></PrivetRoutes>
+      },
+      {
+        path:"add-request",
+        element: <AddRequest></AddRequest>
+      },
+      {
+        path:"all-users",
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path:"my-requests",
+        element: <MyRequests></MyRequests>
+      },
+      {
+        path:"all-requests",
+        element: <AllRequests></AllRequests>
+      },
     ],
   },
-
   {
     path: "*",
     Component: ErrorPage,
   },
 ]);
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
