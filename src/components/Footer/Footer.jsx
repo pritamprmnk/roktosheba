@@ -27,18 +27,18 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2">
             <li><a href="/" className="hover:text-red-600">Home</a></li>
-            <li><a href="/alltickets" className="hover:text-red-600">Find a Donor</a></li>
-            <li><a href="#" className="hover:text-red-600">About Us</a></li>
-            <li><a href="#" className="hover:text-red-600">Donate Blood</a></li>
+            <li><a href="/searchrequest" className="hover:text-red-600">Find a Donor</a></li>
+            <li><a href="/alldonorrequest" className="hover:text-red-600">All Donor Requests</a></li>
+            <li><a href="/donate" className="hover:text-red-600">Donate</a></li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-lg font-semibold mb-3">Support</h3>
           <ul className="space-y-2">
-            <li><a href="/" className="hover:text-red-600">Help Center</a></li>
-            <li><a href="/alltickets" className="hover:text-red-600">Eligibility Requirements</a></li>
-            <li><a href="#" className="hover:text-red-600">Hospital Partners</a></li>
+            <li><a href="/newsletter" className="hover:text-red-600">Newsletter</a></li>
+            <li><a href="/faqs" className="hover:text-red-600">FAQs</a></li>
+            <li><a href="/contact" className="hover:text-red-600">Contact</a></li>
 
           </ul>
         </div>
@@ -74,8 +74,8 @@ export default function Footer() {
         <p>© 2025 RoktoSheba. All rights reserved.</p>
 
         <div className="flex gap-6 mt-3 md:mt-0">
-          <a href="#" className="hover:text-red-600">Privacy Policy</a>
-          <a href="#" className="hover:text-red-600">Terms of Service</a>
+          <a href="/privacypolicy" className="hover:text-red-600">Privacy Policy</a>
+          <a href="/termsofservice" className="hover:text-red-600">Terms of Service</a>
         </div>
       </div>
     </footer>

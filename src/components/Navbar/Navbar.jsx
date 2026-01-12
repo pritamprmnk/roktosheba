@@ -11,6 +11,7 @@ export default function Navbar() {
   const handlesignout = () => {
     signOutUser();
     setDropdown(false);
+    setOpen(false);
   };
 
   const navLinkClass =
@@ -18,8 +19,10 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
+      
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         
+        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img
             src="/assets/blood.png"
@@ -31,35 +34,28 @@ export default function Navbar() {
           </h1>
         </Link>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
-          <NavLink to="/" className={navLinkClass}>
-            Home
-          </NavLink>
-
+          <NavLink to="/" className={navLinkClass}>Home</NavLink>
+          <NavLink to="/alldonorrequest" className={navLinkClass}>All Requests</NavLink>
+          <NavLink to="/donate" className={navLinkClass}>Donate</NavLink>
+          
           {user && (
-            <>
-
-              <NavLink to="/dashboard" className={navLinkClass}>
-                Dashboard
-              </NavLink>
-            </>
+            <NavLink to="/dashboard" className={navLinkClass}>
+              Dashboard
+            </NavLink>
           )}
-            {/* <NavLink to="/allrequests" className={navLinkClass}>
-            All Request
-          </NavLink> */}
-            <NavLink to="/donate" className={navLinkClass}>
-            Donate
-          </NavLink>
         </div>
 
+        {/* Desktop Right */}
         <div className="hidden md:flex items-center gap-4 relative">
           {!user ? (
-            <>
-              <Link to="/login" className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-                Login
-              </Link>
-
-            </>
+            <Link
+              to="/login"
+              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+            >
+              Login
+            </Link>
           ) : (
             <div className="relative">
               <button
@@ -69,6 +65,7 @@ export default function Navbar() {
                 <img
                   src={user.mainPhotoUrl || "https://i.ibb.co/4pDNDk1/avatar.png"}
                   className="w-9 h-9 rounded-full"
+                  alt="user"
                 />
                 <span className="font-medium">{user.displayName}</span>
               </button>
@@ -93,42 +90,48 @@ export default function Navbar() {
           )}
         </div>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden"
-        >
+        {/* Mobile Menu Button */}
+        <button onClick={() => setOpen(!open)} className="md:hidden">
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden px-6 pb-4 space-y-2">
-          <NavLink to="/" className={navLinkClass}>
+          <NavLink to="/" className={navLinkClass} onClick={() => setOpen(false)}>
             Home
           </NavLink>
 
-          {user && (
-            <>
-              
-              <NavLink to="/dashboard" className={navLinkClass}>
-                Dashboard
-              </NavLink>
-              <NavLink to="/donate" className={navLinkClass}>
+          <NavLink to="/donate" className={navLinkClass} onClick={() => setOpen(false)}>
             Donate
           </NavLink>
-            </>
+          <NavLink to="/alldonorrequest" className={navLinkClass} onClick={() => setOpen(false)}>
+            All Requests
+          </NavLink>
+
+
+          {user && (
+            <NavLink
+              to="/dashboard"
+              className={navLinkClass}
+              onClick={() => setOpen(false)}
+            >
+              Dashboard
+            </NavLink>
           )}
 
           {!user ? (
-            <>
-              <Link to="/login" className={navLinkClass}>
-                Login
-              </Link>
-
-            </>
+            <Link to="/login" className={navLinkClass} onClick={() => setOpen(false)}>
+              Login
+            </Link>
           ) : (
             <>
-              <Link to="/myprofile" className={navLinkClass}>
+              <Link
+                to="/dashboard/profile"
+                className={navLinkClass}
+                onClick={() => setOpen(false)}
+              >
                 My Profile
               </Link>
               <button

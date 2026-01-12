@@ -3,6 +3,9 @@ import Loader from "../Loader/Loader";
 import HeroSection from '../HeroSection/HeroSection';
 import ContactSection from '../ContactSection/ContactSection';
 import StatusSection from '../StatusSection/StatusSection';
+import Testimonials from '../Testimonials/Testimonials';
+import FAQs from '../../Page/FAQs/FAQs';
+
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
@@ -27,7 +30,11 @@ const Home = () => {
         <div>
             <HeroSection />
             <StatusSection></StatusSection>
+            
+            <Testimonials></Testimonials>
+            <FAQs></FAQs>
             <ContactSection></ContactSection>
+            
         </div>
     );
 };

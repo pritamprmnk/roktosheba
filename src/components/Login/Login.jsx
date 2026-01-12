@@ -3,7 +3,7 @@ import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
-  const { signInUser, } = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -22,11 +22,28 @@ export default function Login() {
       });
   };
 
+  // Demo login handlers
+  const handleAdminDemo = () => {
+    const email = "admin@demo.com";
+    const password = "Pw@123456";
+
+    signInUser(email, password)
+      .then(() => navigate("/"))
+      .catch(() => setError("Admin demo login failed!"));
+  };
+
+  const handleUserDemo = () => {
+    const email = "user@demo.com";
+    const password = "Pw@123456";
+
+    signInUser(email, password)
+      .then(() => navigate("/"))
+      .catch(() => setError("User demo login failed!"));
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-
         <h2 className="text-2xl font-bold text-center mb-2 text-red-500">
           Login to Your Account
         </h2>
@@ -34,6 +51,8 @@ export default function Login() {
         {error && (
           <p className="text-red-500 text-center mb-3">{error}</p>
         )}
+
+
 
         <form onSubmit={handleLogIn}>
           <label className="text-gray-700 font-medium">Email</label>
@@ -54,12 +73,12 @@ export default function Login() {
             required
           />
 
-                <Link
-                    className="text-sm text-teal-600 mb-4 mt-2 inline-block"
-                    to="/forgot"
-                    state={{}}>Forgot Password?
-                </Link>
-
+          <Link
+            className="text-sm text-teal-600 mb-4 mt-2 inline-block"
+            to="/forgot"
+          >
+            Forgot Password?
+          </Link>
 
           <button
             type="submit"
@@ -73,12 +92,28 @@ export default function Login() {
           <div className="flex-1 h-px bg-gray-300"></div>
           <span className="px-2 text-gray-500 text-sm">Or continue with</span>
           <div className="flex-1 h-px bg-gray-300"></div>
+          
+        </div>
+                {/* Demo Buttons */}
+        <div className="flex gap-3 mb-4">
+          <button
+            onClick={handleAdminDemo}
+            className="flex-1 bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-900 transition"
+          >
+            Admin Demo
+          </button>
+          <button
+            onClick={handleUserDemo}
+            className="flex-1 bg-teal-600 text-white p-2 rounded-lg hover:bg-teal-700 transition"
+          >
+            User Demo
+          </button>
         </div>
 
         <p className="text-center text-sm text-gray-500 mt-4">
           Don't have an account?{" "}
           <Link to="/signup" className="text-red-600 hover:underline">
-            Register
+            Join as a Donor
           </Link>
         </p>
       </div>

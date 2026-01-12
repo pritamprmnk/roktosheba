@@ -110,7 +110,7 @@ const Signup = () => {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
 
         <h2 className="text-2xl font-bold text-center mb-2 text-red-600">
-          Create Your Account
+          Join as a Donor
         </h2>
 
         {passwordError && (

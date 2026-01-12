@@ -28,6 +28,15 @@ import Donate from "./Page/Donate/Donate.jsx";
 import PaymentSuccess from "./Page/PaymentSuccess/PaymentSuccess.jsx";
 import PaymentCancel from "./Page/PaymentCancel/PaymentCancel.jsx";
 import SearchRequest from "./Page/SearchRequest/SearchRequest.jsx";
+import About from "./Page/About/About.jsx";
+import Contact from "./Page/Contact/Contact.jsx";
+import PrivacyPolicy from "./Page/PrivacyPolicy/PrivacyPolicy.jsx";
+import TermsOfService from "./Page/TermsOfService/TermsOfService.jsx";
+
+import FAQs from "./Page/FAQs/FAQs.jsx";
+
+import Newsletter from "./components/Newsletter/Newsletter.jsx";
+import AllDonorRequest from "./Page/AllDonorRequest/AllDonorRequest.jsx";
 
 
 function MyPostsWrapper() {
@@ -68,6 +77,34 @@ const router = createBrowserRouter([
     { 
       path: "payment-cancel", 
       Component: PaymentCancel 
+    },
+    { 
+      path: "about", 
+      Component: About 
+    },
+    { 
+      path: "contact", 
+      Component: Contact 
+    },
+    { 
+      path: "privacypolicy", 
+      Component: PrivacyPolicy 
+    },
+    { 
+      path: "termsofservice", 
+      Component: TermsOfService 
+    },
+    { 
+      path: "faqs", 
+      Component: FAQs 
+    },
+    { 
+      path: "newsletter", 
+      Component: Newsletter
+    },
+    { 
+      path: "alldonorrequest", 
+      Component: AllDonorRequest
     },
   ],
 },
